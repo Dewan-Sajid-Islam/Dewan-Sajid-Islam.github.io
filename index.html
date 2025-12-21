@@ -1,116 +1,238 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dewan Sajid Islam | Theoretical Physics & Computational Oncology</title>
-  
-  <!-- Primary Meta Tags -->
-  <meta name="title" content="Dewan Sajid Islam | Theoretical Physics & Computational Oncology">
-  <meta name="description" content="Interdisciplinary researcher developing mathematical frameworks spanning cosmology and oncology. Projects in theoretical physics, cosmology, and computational oncology.">
-  <meta name="keywords" content="Dewan Sajid Islam, Theoretical Physics, Computational Oncology, Cosmology, Dark Energy, Cancer Modeling, SUDAT, Research">
-  <meta name="author" content="Dewan Sajid Islam">
-  <meta name="robots" content="index, follow">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://Dewan-Sajid-Islam.github.io/">
-  <meta property="og:title" content="Dewan Sajid Islam | Theoretical Physics & Computational Oncology">
-  <meta property="og:description" content="Interdisciplinary researcher developing mathematical frameworks spanning cosmology and oncology.">
-  <meta property="og:image" content="https://Dewan-Sajid-Islam.github.io/og-image.png">
-  
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://Dewan-Sajid-Islam.github.io/">
-  <meta property="twitter:title" content="Dewan Sajid Islam | Theoretical Physics & Computational Oncology">
-  <meta property="twitter:description" content="Interdisciplinary researcher developing mathematical frameworks spanning cosmology and oncology.">
-  <meta property="twitter:image" content="https://Dewan-Sajid-Islam.github.io/og-image.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <!-- SEO Meta -->  <title>Dewan Sajid Islam | Theoretical Physics & Computational Research</title>
+  <meta name="description" content="Academic homepage of Dewan Sajid Islam. Research in theoretical physics, cosmology, scalar-field dark sector models, and computational oncology." />
+  <meta name="keywords" content="Dewan Sajid Islam, theoretical physics, cosmology, dark matter, dark energy, scalar field theory, computational oncology, systems biology" />
+  <meta name="author" content="Dewan Sajid Islam" />  <!-- Open Graph -->  <meta property="og:title" content="Dewan Sajid Islam | Research" />
+  <meta property="og:description" content="Research, publications, and scientific work by Dewan Sajid Islam." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dewan-sajid-islam.github.io" />  <style>
+    :root {
+      --bg: #05060d;
+      --fg: #e6e6f0;
+      --muted: #a0a0c0;
+      --accent: #7aa2ff;
+      --card: rgba(255,255,255,0.05);
+    }
 
-  <!-- Tailwind CSS for clean modern design -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <style>
-    body { scroll-behavior: smooth; }
-    a { transition: color 0.2s; }
-    a:hover { color: #3b82f6; }
-  </style>
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
+      background: radial-gradient(circle at top, #0b0f2a, var(--bg));
+      color: var(--fg);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
 
-  <!-- Header / Navigation -->
-  <header class="bg-white shadow p-6 flex justify-between items-center sticky top-0 z-50">
-    <h1 class="text-2xl font-bold">Dewan Sajid Islam</h1>
-    <nav>
-      <a href="#about" class="mx-2 font-medium">About</a>
-      <a href="#projects" class="mx-2 font-medium">Projects</a>
-      <a href="#blog" class="mx-2 font-medium">Blog</a>
-      <a href="#contact" class="mx-2 font-medium">Contact</a>
-    </nav>
-  </header>
+    /* Starfield background */
+    body::before,
+    body::after {
+      background-image:
+        radial-gradient(2px 2px at 25% 60%, #bcd3ff, transparent),
+        radial-gradient(2px 2px at 70% 20%, #bcd3ff, transparent),
+        radial-gradient(2px 2px at 40% 40%, #bcd3ff, transparent);
+      opacity: 0.15;
+      animation: driftSlow 240s linear infinite;
+    }
 
-  <!-- Hero Section -->
-  <section class="p-12 text-center bg-gradient-to-r from-blue-100 to-blue-200">
-    <h2 class="text-4xl font-bold mb-4">Interdisciplinary Researcher</h2>
-    <p class="text-lg max-w-xl mx-auto">
-      Combining theoretical physics and computational oncology to explore fundamental questions in cosmology and cancer systems biology.
-    </p>
-  </section>
+    /* Milky Way band */
+    .milkyway {
+      position: fixed;
+      top: -20%;
+      left: -10%;
+      width: 140%;
+      height: 140%;
+      background: radial-gradient(ellipse at center,
+        rgba(180,200,255,0.08) 0%,
+        rgba(120,150,255,0.04) 35%,
+        rgba(80,100,180,0.02) 55%,
+        transparent 70%);
+      transform: rotate(-15deg);
+      pointer-events: none;
+      z-index: -2;
+    }
 
-  <!-- About Me -->
-  <section id="about" class="p-12 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-semibold mb-6 text-center">About Me</h2>
-    <p class="mb-4">
-      I'm an interdisciplinary researcher passionate about developing mathematical frameworks spanning cosmology and oncology. My work integrates theoretical physics, computational modeling, and machine learning to address both cosmic and biological systems.
-    </p>
+    @keyframes driftSlow {
+      from { background-position: 0 0; }
+      to { background-position: 10000px 5000px; }
+    }
+
+    body::before {
+      background-image:
+        radial-gradient(1px 1px at 20% 30%, white, transparent),
+        radial-gradient(1px 1px at 80% 40%, white, transparent),
+        radial-gradient(1px 1px at 50% 80%, white, transparent),
+        radial-gradient(1px 1px at 10% 70%, white, transparent),
+        radial-gradient(1px 1px at 90% 90%, white, transparent);
+      opacity: 0.35;
+    }
+
+    body::after {
+      background-image:
+        radial-gradient(2px 2px at 25% 60%, #bcd3ff, transparent),
+        radial-gradient(2px 2px at 70% 20%, #bcd3ff, transparent),
+        radial-gradient(2px 2px at 40% 40%, #bcd3ff, transparent);
+      opacity: 0.15;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    header h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 700;
+    }
+
+    header p {
+      max-width: 780px;
+      margin-top: 1.2rem;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    nav {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    section {
+      max-width: 1050px;
+      margin: auto;
+      padding: 5rem 1.5rem;
+    }
+
+    section h2 {
+      font-size: 2.1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 1.6rem;
+      margin-bottom: 1.6rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .card h3 { margin-bottom: 0.6rem; color: var(--accent); }
+
+    ul { margin-left: 1.3rem; }
+
+    footer {
+      text-align: center;
+      padding: 2.2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    a.inline { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      section { padding: 3.2rem 1.2rem; }
+    }
+  </style></head>
+<body><header>
+  <div class="milkyway"></div>
+  <h1>Dewan Sajid Islam</h1>
+  <p>
+    My interest in science is grounded in a desire to understand how complex physical systems
+    can be described by coherent mathematical structure. Over time, this curiosity has evolved
+    into focused research activity across theoretical physics, cosmology, and computational
+    modeling. This website documents my ongoing work, publications, and research direction.
+  </p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header><section id="about">
+  <h2>About</h2>
+  <div class="card">
     <p>
-      My current focus includes the Scalar Unified Dark Adaptive Theory (SUDAT), high-performance cosmological simulations, and systems oncology models for multi-scale tumor analysis.
+      I am an early‑career researcher based in Dhaka, Bangladesh, with active interests in
+      theoretical physics, cosmology, and computational oncology. My work emphasizes mathematical
+      consistency, physical interpretability, and cross‑disciplinary methods.
     </p>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="p-12 bg-gray-100">
-    <h2 class="text-3xl font-semibold mb-6 text-center">Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-      <div class="p-6 bg-white rounded shadow">
-        <h3 class="font-bold text-xl mb-2">SUDAT Framework</h3>
-        <p>Novel relativistic framework unifying dark matter and dark energy via baryon-coupled scalar fields. Includes derivation of field equations and perturbation spectra.</p>
-      </div>
-      <div class="p-6 bg-white rounded shadow">
-        <h3 class="font-bold text-xl mb-2">High-Performance Cosmological Simulations</h3>
-        <p>Optimized MCMC pipelines in Python/C++ for efficient cosmological parameter estimation and large-scale simulation.</p>
-      </div>
-      <div class="p-6 bg-white rounded shadow">
-        <h3 class="font-bold text-xl mb-2">Systems Oncology Models</h3>
-        <p>Multi-scale cancer models integrating metabolic constraints and machine learning for neoantigen prediction using TCGA datasets.</p>
-      </div>
-      <div class="p-6 bg-white rounded shadow">
-        <h3 class="font-bold text-xl mb-2">Cross-Disciplinary Methods</h3>
-        <p>Applied renormalization group techniques from quantum field theory to characterize phase transitions in tumor microenvironments.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog -->
-  <section id="blog" class="p-12 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-semibold mb-6 text-center">Blog</h2>
-    <p class="text-center">Coming soon... 📝</p>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="p-12 bg-gray-100 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-semibold mb-6 text-center">Contact</h2>
-    <p class="text-center mb-4">You can reach me at <a href="mailto:johnnykitty06@gmail.com" class="text-blue-500">johnnykitty06@gmail.com</a></p>
-    <div class="flex justify-center gap-4">
-      <a href="https://orcid.org/" target="_blank" class="text-blue-600 font-medium">ORCID</a>
-      <a href="https://scholar.google.com/" target="_blank" class="text-blue-600 font-medium">Google Scholar</a>
-      <a href="https://www.researchgate.net/" target="_blank" class="text-blue-600 font-medium">Research Profile</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-white shadow p-6 text-center text-gray-500">
-    &copy; 2025 Dewan Sajid Islam
-  </footer>
-
-</body>
+    <p style="margin-top:1rem;">
+      Alongside formal science education, I pursue independent research projects spanning
+      scalar‑field cosmology, high‑performance numerical simulation, and systems‑level modeling
+      of cancer biology. I am committed to open science and accessible dissemination of research.
+    </p>
+  </div>
+</section><section id="research">
+  <h2>Research Profile & Interests</h2>
+  <div class="card">
+    <ul>
+      <li>Theoretical physics and quantum mechanics</li>
+      <li>Unified cosmological models of dark matter and dark energy</li>
+      <li>Scalar‑field theories and modified gravity</li>
+      <li>Computational oncology and systems biology</li>
+      <li>Machine learning for cancer neoantigen prediction</li>
+      <li>Multi‑scale tumor microenvironment modeling</li>
+      <li>High‑performance simulation and MCMC methods</li>
+    </ul>
+  </div>
+</section><section id="publications">
+  <h2>Publications & Preprints</h2>  <div class="card">
+    <h3>Towards a Unified Dark Sector: The Scalar Unified Dark Adaptive Theory (SUDAT)</h3>
+    <p>
+      A relativistic scalar‑field framework unifying dark matter and dark energy through
+      baryon‑coupled adaptive dynamics. Submitted for peer review to <em>Nuclear Physics B</em>.
+      Public preprint available; further publications forthcoming.
+    </p>
+  </div>  <div class="card">
+    <h3>Integrated Systems Oncology: A Multimodal Framework for Addressing Cancer Heterogeneity</h3>
+    <p>
+      Presents a systems‑level oncology framework integrating metabolic constraints, machine
+      learning, CRISPR‑guided immune engineering, and epigenetic modulation.
+      Available on <a class="inline" href="https://www.preprints.org/manuscript/202510.0570" target="_blank">Preprints.org</a>;
+      submitted to <em>Oncoscience</em>.
+    </p>
+  </div>  <div class="card">
+    <p><em>Additional publications and ongoing manuscripts will be added as they become publicly available.</em></p>
+  </div>
+</section><section id="skills">
+  <h2>Technical Skills</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Programming:</strong> Python, NumPy, SciPy, PyTorch, TensorFlow, C#, C++</li>
+      <li><strong>Scientific Computing:</strong> MCMC methods, ODE/PDE solvers, numerical integration</li>
+      <li><strong>Machine Learning:</strong> Ensemble models, federated learning, neoantigen pipelines</li>
+      <li><strong>Bioinformatics:</strong> TCGA/ICGC analysis, multi‑omic integration</li>
+      <li><strong>Modeling:</strong> Scalar‑field cosmology, tumor microenvironment dynamics</li>
+      <li><strong>Tools:</strong> LaTeX, Overleaf, Git, Jupyter, Matplotlib</li>
+    </ul>
+  </div>
+</section><section id="contact">
+  <h2>Contact & Profiles</h2>
+  <div class="card">
+    <p>Email: <a class="inline" href="mailto:johnnykitty06@gmail.com">johnnykitty06@gmail.com</a></p>
+    <p>ORCID: <a class="inline" href="https://orcid.org/0009-0008-8784-8480" target="_blank">0009‑0008‑8784‑8480</a></p>
+    <p>Google Scholar: <a class="inline" href="https://scholar.google.com/citations?user=C9wM1SkAAAAJ&hl=en" target="_blank">Profile</a></p>
+    <p>Sciprofiles: <a class="inline" href="https://sciprofiles.com/profile/4345346" target="_blank">Profile</a></p>
+    <p>Academia.edu: <a class="inline" href="https://independent.academia.edu/DewanSajidIslam" target="_blank">Profile</a></p>
+  </div>
+</section><footer>
+  © 2025 Dewan Sajid Islam · Hosted on GitHub Pages
+</footer></body>
 </html>
