@@ -24,6 +24,62 @@
       color: var(--fg);
       line-height: 1.75;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Starfield layers */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-repeat: repeat;
+    }
+
+    body::before {
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, white, transparent),
+        radial-gradient(1px 1px at 30% 80%, white, transparent),
+        radial-gradient(1px 1px at 50% 40%, white, transparent),
+        radial-gradient(1px 1px at 70% 60%, white, transparent),
+        radial-gradient(1px 1px at 90% 10%, white, transparent);
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    body::after {
+      background-image:
+        radial-gradient(2px 2px at 25% 60%, #bcd3ff, transparent),
+        radial-gradient(2px 2px at 70% 20%, #bcd3ff, transparent),
+        radial-gradient(2px 2px at 40% 40%, #bcd3ff, transparent);
+      opacity: 0.25;
+      z-index: 0;
+      animation: driftSlow 300s linear infinite;
+    }
+
+    .milkyway {
+      position: fixed;
+      inset: -20%;
+      background:
+        radial-gradient(ellipse at center,
+          rgba(180,200,255,0.12) 0%,
+          rgba(120,150,255,0.06) 35%,
+          rgba(80,100,180,0.03) 55%,
+          transparent 70%);
+      transform: rotate(-15deg);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header, section, footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes driftSlow {
+      from { background-position: 0 0; }
+      to { background-position: 12000px 6000px; }
     }
 
     /* Starfield background */
