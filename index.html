@@ -1,143 +1,221 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <!-- SEO Meta -->  <title>Dewan Sajid Islam | Theoretical Physics & Computational Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Academic homepage of Dewan Sajid Islam. Research in theoretical physics, cosmology, scalar-field dark sector models, and computational oncology." />
   <meta name="keywords" content="Dewan Sajid Islam, theoretical physics, cosmology, dark matter, dark energy, scalar field theory, computational oncology, systems biology" />
-  <meta name="author" content="Dewan Sajid Islam" />  <!-- Open Graph -->  <meta property="og:title" content="Dewan Sajid Islam | Research" />
+  <meta name="author" content="Dewan Sajid Islam" />
+  <meta property="og:title" content="Dewan Sajid Islam | Research" />
   <meta property="og:description" content="Research, publications, and scientific work by Dewan Sajid Islam." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dewan-sajid-islam.github.io" />  <style>
+  <meta property="og:url" content="https://dewan-sajid-islam.github.io" />
+  <title>Dewan Sajid Islam | Theoretical Physics & Computational Research</title>
+  <style>
     :root {
       --bg: #05060d;
       --fg: #e6e6f0;
       --muted: #a0a0c0;
       --accent: #7aa2ff;
       --card: rgba(255,255,255,0.05);
+      --star-color: rgba(255, 255, 255, 0.9);
+      --star-color-dim: rgba(200, 220, 255, 0.7);
+      --nebula-blue: rgba(120, 160, 255, 0.15);
+      --nebula-purple: rgba(180, 120, 255, 0.12);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
-      background: radial-gradient(circle at top, #02030a 0%, #02030a 30%, #030414 60%, #05060d 100%);
+      background: 
+        radial-gradient(ellipse at top, #020212 0%, #03031a 25%, #050620 50%, #080830 100%),
+        linear-gradient(to bottom, #000010 0%, #020218 100%);
       color: var(--fg);
       line-height: 1.75;
       overflow-x: hidden;
       position: relative;
+      min-height: 100vh;
     }
 
-    /* Starfield layers */
-    body::before,
-    body::after {
-      background-image:
-        radial-gradient(2.5px 2.5px at 18% 62%, #cfe0ff, transparent),
-        radial-gradient(2.2px 2.2px at 46% 28%, #cfe0ff, transparent),
-        radial-gradient(2.6px 2.6px at 72% 44%, #cfe0ff, transparent),
-        radial-gradient(2.3px 2.3px at 88% 15%, #cfe0ff, transparent);
-      opacity: 0.45;
-      z-index: 0;
-      animation: driftSlow 900s linear infinite;
-      will-change: background-position;
-    }
-
-    .milkyway {
+    /* Starfield Container */
+    .starfield {
       position: fixed;
-      inset: -40%;
-      background:
-        linear-gradient(120deg,
-          transparent 0%,
-          rgba(190,210,255,0.22) 25%,
-          rgba(230,240,255,0.35) 40%,
-          rgba(190,210,255,0.22) 55%,
-          transparent 75%),
-        radial-gradient(ellipse at center,
-          rgba(220,235,255,0.45) 0%,
-          rgba(160,190,255,0.30) 35%,
-          rgba(100,130,200,0.18) 55%,
-          transparent 75%);
-      transform: rotate(-20deg);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
       z-index: 0;
-      opacity: 1;
+      overflow: hidden;
     }
 
+    /* Multiple star layers for depth */
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(1px 1px at 5% 10%, var(--star-color), transparent),
+        radial-gradient(1px 1px at 15% 70%, var(--star-color), transparent),
+        radial-gradient(1.5px 1.5px at 25% 30%, var(--star-color-dim), transparent),
+        radial-gradient(1px 1px at 35% 50%, var(--star-color), transparent),
+        radial-gradient(2px 2px at 45% 20%, var(--star-color-dim), transparent),
+        radial-gradient(1px 1px at 55% 80%, var(--star-color), transparent),
+        radial-gradient(1.5px 1.5px at 65% 40%, var(--star-color-dim), transparent),
+        radial-gradient(1px 1px at 75% 60%, var(--star-color), transparent),
+        radial-gradient(2px 2px at 85% 25%, var(--star-color-dim), transparent),
+        radial-gradient(1px 1px at 95% 75%, var(--star-color), transparent),
+        radial-gradient(1.5px 1.5px at 10% 45%, var(--star-color-dim), transparent),
+        radial-gradient(1px 1px at 30% 85%, var(--star-color), transparent),
+        radial-gradient(2px 2px at 50% 15%, var(--star-color-dim), transparent),
+        radial-gradient(1px 1px at 70% 65%, var(--star-color), transparent),
+        radial-gradient(1.5px 1.5px at 90% 35%, var(--star-color-dim), transparent);
+      opacity: 0.6;
+    }
+
+    .stars2 {
+      background-image: 
+        radial-gradient(0.8px 0.8px at 8% 18%, var(--star-color), transparent),
+        radial-gradient(0.8px 0.8px at 22% 72%, var(--star-color), transparent),
+        radial-gradient(1px 1px at 41% 35%, var(--star-color-dim), transparent),
+        radial-gradient(0.8px 0.8px at 63% 58%, var(--star-color), transparent),
+        radial-gradient(1.2px 1.2px at 79% 22%, var(--star-color-dim), transparent),
+        radial-gradient(0.8px 0.8px at 91% 77%, var(--star-color), transparent),
+        radial-gradient(1px 1px at 18% 48%, var(--star-color-dim), transparent),
+        radial-gradient(0.8px 0.8px at 38% 88%, var(--star-color), transparent),
+        radial-gradient(1.2px 1.2px at 58% 12%, var(--star-color-dim), transparent),
+        radial-gradient(0.8px 0.8px at 78% 68%, var(--star-color), transparent),
+        radial-gradient(1px 1px at 98% 38%, var(--star-color-dim), transparent);
+      opacity: 0.4;
+    }
+
+    .stars3 {
+      background-image: 
+        radial-gradient(3px 3px at 20% 60%, var(--star-color-dim), transparent),
+        radial-gradient(2.5px 2.5px at 40% 30%, var(--star-color-dim), transparent),
+        radial-gradient(3.5px 3.5px at 60% 70%, var(--star-color-dim), transparent),
+        radial-gradient(2px 2px at 80% 40%, var(--star-color-dim), transparent);
+      opacity: 0.3;
+    }
+
+    /* Animations for different layers */
+    @keyframes driftSlow {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(300px, 150px); }
+    }
+
+    @keyframes driftMedium {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(200px, 100px); }
+    }
+
+    @keyframes driftFast {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(100px, 50px); }
+    }
+
+    .stars { animation: driftSlow 300s linear infinite alternate; }
+    .stars2 { animation: driftMedium 200s linear infinite alternate; }
+    .stars3 { animation: driftFast 150s linear infinite alternate; }
+
+    /* Milky Way Galaxy */
+    .milkyway {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse at 30% 50%, 
+          rgba(180, 200, 255, 0.25) 0%,
+          rgba(140, 170, 255, 0.15) 20%,
+          rgba(100, 140, 255, 0.08) 40%,
+          transparent 70%),
+        linear-gradient(60deg,
+          transparent 0%,
+          rgba(190, 210, 255, 0.1) 25%,
+          rgba(230, 240, 255, 0.15) 40%,
+          rgba(190, 210, 255, 0.1) 55%,
+          transparent 75%);
+      transform: rotate(-15deg) scale(1.5);
+      opacity: 0.6;
+      filter: blur(40px);
+      pointer-events: none;
+      animation: milkywayPulse 60s ease-in-out infinite alternate;
+    }
+
+    @keyframes milkywayPulse {
+      0% { opacity: 0.5; transform: rotate(-15deg) scale(1.5) translateX(0); }
+      100% { opacity: 0.7; transform: rotate(-15deg) scale(1.5) translateX(30px); }
+    }
+
+    /* Nebula/Gas Clouds */
+    .nebula {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 70% 30%, var(--nebula-blue) 0%, transparent 50%),
+        radial-gradient(circle at 20% 70%, var(--nebula-purple) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(100, 200, 255, 0.1) 0%, transparent 40%);
+      opacity: 0.5;
+      filter: blur(60px);
+      pointer-events: none;
+      animation: nebulaFloat 120s ease-in-out infinite alternate;
+    }
+
+    @keyframes nebulaFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(50px, 30px) scale(1.05); }
+      66% { transform: translate(-30px, 20px) scale(0.98); }
+      100% { transform: translate(20px, -20px) scale(1.02); }
+    }
+
+    /* Shooting stars */
+    .shooting-star {
+      position: absolute;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8));
+      height: 1px;
+      filter: blur(1px);
+      animation: shootingStar 3s linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes shootingStar {
+      0% {
+        opacity: 0;
+        transform: translateX(0) translateY(0);
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(300px) translateY(150px);
+      }
+    }
+
+    /* Content styling */
     header, section, footer {
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
-    @keyframes driftSlow {
-      from { background-position: 0 0; }
-      to { background-position: 12000px 6000px; }
-    }
-
-    /* Starfield background */
-    body::before,
-    body::after {
-      background-image:
-        radial-gradient(2px 2px at 25% 60%, #bcd3ff, transparent),
-        radial-gradient(2px 2px at 70% 20%, #bcd3ff, transparent),
-        radial-gradient(2px 2px at 40% 40%, #bcd3ff, transparent);
-      opacity: 0.15;
-      animation: driftSlow 240s linear infinite;
-    }
-
-    /* Milky Way band */
-    .milkyway {
-      position: fixed;
-      top: -20%;
-      left: -10%;
-      width: 140%;
-      height: 140%;
-      background: radial-gradient(ellipse at center,
-        rgba(180,200,255,0.08) 0%,
-        rgba(120,150,255,0.04) 35%,
-        rgba(80,100,180,0.02) 55%,
-        transparent 70%);
-      transform: rotate(-15deg);
-      pointer-events: none;
-      z-index: -2;
-    }
-
-    @keyframes driftSlow {
-      from { background-position: 0 0; }
-      to { background-position: 10000px 5000px; }
-    }
-
-    body::before {
-      background-image:
-        radial-gradient(1.2px 1.2px at 8% 18%, #ffffff, transparent),
-        radial-gradient(1.4px 1.4px at 22% 72%, #ffffff, transparent),
-        radial-gradient(1.3px 1.3px at 41% 35%, #ffffff, transparent),
-        radial-gradient(1.5px 1.5px at 63% 58%, #ffffff, transparent),
-        radial-gradient(1.2px 1.2px at 79% 22%, #ffffff, transparent),
-        radial-gradient(1.3px 1.3px at 91% 77%, #ffffff, transparent);
-      opacity: 0.75;
-      z-index: 0;
-    }
-
-    body::after {
-      background-image:
-        radial-gradient(2px 2px at 25% 60%, #bcd3ff, transparent),
-        radial-gradient(2px 2px at 70% 20%, #bcd3ff, transparent),
-        radial-gradient(2px 2px at 40% 40%, #bcd3ff, transparent);
-      opacity: 0.15;
-    }
-
-    header {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
-    }
-
+    /* Enhanced text glow for cosmic feel */
     header h1 {
       font-size: clamp(2.4rem, 5vw, 3.6rem);
       font-weight: 700;
+      text-shadow: 
+        0 0 20px rgba(122, 162, 255, 0.3),
+        0 0 40px rgba(122, 162, 255, 0.1);
+      letter-spacing: 0.5px;
     }
 
     header p {
@@ -145,6 +223,7 @@
       margin-top: 1.2rem;
       color: var(--muted);
       font-size: 1.1rem;
+      text-shadow: 0 0 10px rgba(122, 162, 255, 0.2);
     }
 
     nav {
@@ -159,6 +238,17 @@
       color: var(--accent);
       text-decoration: none;
       font-weight: 500;
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      background: rgba(122, 162, 255, 0.1);
+      border: 1px solid rgba(122, 162, 255, 0.2);
+    }
+
+    nav a:hover {
+      background: rgba(122, 162, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(122, 162, 255, 0.2);
     }
 
     section {
@@ -170,17 +260,31 @@
     section h2 {
       font-size: 2.1rem;
       margin-bottom: 1.8rem;
+      color: #b0c4ff;
+      text-shadow: 0 0 15px rgba(176, 196, 255, 0.3);
     }
 
     .card {
-      background: var(--card);
+      background: rgba(255, 255, 255, 0.03);
       border-radius: 14px;
-      padding: 1.6rem;
+      padding: 1.8rem;
       margin-bottom: 1.6rem;
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(122, 162, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .card h3 { margin-bottom: 0.6rem; color: var(--accent); }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(122, 162, 255, 0.1);
+    }
+
+    .card h3 { 
+      margin-bottom: 0.8rem; 
+      color: #a0c0ff; 
+    }
 
     ul { margin-left: 1.3rem; }
 
@@ -189,98 +293,173 @@
       padding: 2.2rem;
       color: var(--muted);
       font-size: 0.9rem;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    a.inline { color: var(--accent); text-decoration: none; }
+    a.inline { 
+      color: #8cb4ff; 
+      text-decoration: none;
+      text-shadow: 0 0 8px rgba(140, 180, 255, 0.3);
+      transition: color 0.3s ease;
+    }
+
+    a.inline:hover {
+      color: #a8c8ff;
+      text-decoration: underline;
+    }
 
     @media (max-width: 600px) {
       section { padding: 3.2rem 1.2rem; }
+      nav { gap: 1rem; }
+      nav a { padding: 0.4rem 1rem; }
     }
-  </style></head>
-<body><header>
-  <div class="milkyway"></div>
-  <h1>Dewan Sajid Islam</h1>
-  <p>
-    My interest in science is grounded in a desire to understand how complex physical systems
-    can be described by coherent mathematical structure. Over time, this curiosity has evolved
-    into focused research activity across theoretical physics, cosmology, and computational
-    modeling. This website documents my ongoing work, publications, and research direction.
-  </p>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#research">Research</a>
-    <a href="#publications">Publications</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header><section id="about">
-  <h2>About</h2>
-  <div class="card">
+  </style>
+</head>
+<body>
+  <!-- Celestial Background -->
+  <div class="starfield">
+    <div class="milkyway"></div>
+    <div class="nebula"></div>
+    <div class="stars"></div>
+    <div class="stars stars2"></div>
+    <div class="stars stars3"></div>
+  </div>
+
+  <header>
+    <h1>Dewan Sajid Islam</h1>
     <p>
-      I am an early‑career researcher based in Dhaka, Bangladesh, with active interests in
-      theoretical physics, cosmology, and computational oncology. My work emphasizes mathematical
-      consistency, physical interpretability, and cross‑disciplinary methods.
+      My interest in science is grounded in a desire to understand how complex physical systems
+      can be described by coherent mathematical structure. Over time, this curiosity has evolved
+      into focused research activity across theoretical physics, cosmology, and computational
+      modeling. This website documents my ongoing work, publications, and research direction.
     </p>
-    <p style="margin-top:1rem;">
-      Alongside formal science education, I pursue independent research projects spanning
-      scalar‑field cosmology, high‑performance numerical simulation, and systems‑level modeling
-      of cancer biology. I am committed to open science and accessible dissemination of research.
-    </p>
-  </div>
-</section><section id="research">
-  <h2>Research Profile & Interests</h2>
-  <div class="card">
-    <ul>
-      <li>Theoretical physics and quantum mechanics</li>
-      <li>Unified cosmological models of dark matter and dark energy</li>
-      <li>Scalar‑field theories and modified gravity</li>
-      <li>Computational oncology and systems biology</li>
-      <li>Machine learning for cancer neoantigen prediction</li>
-      <li>Multi‑scale tumor microenvironment modeling</li>
-      <li>High‑performance simulation and MCMC methods</li>
-    </ul>
-  </div>
-</section><section id="publications">
-  <h2>Publications & Preprints</h2>  <div class="card">
-    <h3>Towards a Unified Dark Sector: The Scalar Unified Dark Adaptive Theory (SUDAT)</h3>
-    <p>
-      A relativistic scalar‑field framework unifying dark matter and dark energy through
-      baryon‑coupled adaptive dynamics. Submitted for peer review to <em>Nuclear Physics B</em>.
-      Public preprint available; further publications forthcoming.
-    </p>
-  </div>  <div class="card">
-    <h3>Integrated Systems Oncology: A Multimodal Framework for Addressing Cancer Heterogeneity</h3>
-    <p>
-      Presents a systems‑level oncology framework integrating metabolic constraints, machine
-      learning, CRISPR‑guided immune engineering, and epigenetic modulation.
-      Available on <a class="inline" href="https://www.preprints.org/manuscript/202510.0570" target="_blank">Preprints.org</a>;
-      submitted to <em>Oncoscience</em>.
-    </p>
-  </div>  <div class="card">
-    <p><em>Additional publications and ongoing manuscripts will be added as they become publicly available.</em></p>
-  </div>
-</section><section id="skills">
-  <h2>Technical Skills</h2>
-  <div class="card">
-    <ul>
-      <li><strong>Programming:</strong> Python, NumPy, SciPy, PyTorch, TensorFlow, C#, C++</li>
-      <li><strong>Scientific Computing:</strong> MCMC methods, ODE/PDE solvers, numerical integration</li>
-      <li><strong>Machine Learning:</strong> Ensemble models, federated learning, neoantigen pipelines</li>
-      <li><strong>Bioinformatics:</strong> TCGA/ICGC analysis, multi‑omic integration</li>
-      <li><strong>Modeling:</strong> Scalar‑field cosmology, tumor microenvironment dynamics</li>
-      <li><strong>Tools:</strong> LaTeX, Overleaf, Git, Jupyter, Matplotlib</li>
-    </ul>
-  </div>
-</section><section id="contact">
-  <h2>Contact & Profiles</h2>
-  <div class="card">
-    <p>Email: <a class="inline" href="mailto:johnnykitty06@gmail.com">johnnykitty06@gmail.com</a></p>
-    <p>ORCID: <a class="inline" href="https://orcid.org/0009-0008-8784-8480" target="_blank">0009‑0008‑8784‑8480</a></p>
-    <p>Google Scholar: <a class="inline" href="https://scholar.google.com/citations?user=C9wM1SkAAAAJ&hl=en" target="_blank">Profile</a></p>
-    <p>Sciprofiles: <a class="inline" href="https://sciprofiles.com/profile/4345346" target="_blank">Profile</a></p>
-    <p>Academia.edu: <a class="inline" href="https://independent.academia.edu/DewanSajidIslam" target="_blank">Profile</a></p>
-  </div>
-</section><footer>
-  © 2025 Dewan Sajid Islam · Hosted on GitHub Pages
-</footer></body>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <div class="card">
+      <p>
+        I am an early‑career researcher based in Dhaka, Bangladesh, with active interests in
+        theoretical physics, cosmology, and computational oncology. My work emphasizes mathematical
+        consistency, physical interpretability, and cross‑disciplinary methods.
+      </p>
+      <p style="margin-top:1rem;">
+        Alongside formal science education, I pursue independent research projects spanning
+        scalar‑field cosmology, high‑performance numerical simulation, and systems‑level modeling
+        of cancer biology. I am committed to open science and accessible dissemination of research.
+      </p>
+    </div>
+  </section>
+
+  <section id="research">
+    <h2>Research Profile & Interests</h2>
+    <div class="card">
+      <ul>
+        <li>Theoretical physics and quantum mechanics</li>
+        <li>Unified cosmological models of dark matter and dark energy</li>
+        <li>Scalar‑field theories and modified gravity</li>
+        <li>Computational oncology and systems biology</li>
+        <li>Machine learning for cancer neoantigen prediction</li>
+        <li>Multi‑scale tumor microenvironment modeling</li>
+        <li>High‑performance simulation and MCMC methods</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2>Publications & Preprints</h2>
+    <div class="card">
+      <h3>Towards a Unified Dark Sector: The Scalar Unified Dark Adaptive Theory (SUDAT)</h3>
+      <p>
+        A relativistic scalar‑field framework unifying dark matter and dark energy through
+        baryon‑coupled adaptive dynamics. Submitted for peer review to <em>Nuclear Physics B</em>.
+        Public preprint available; further publications forthcoming.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Integrated Systems Oncology: A Multimodal Framework for Addressing Cancer Heterogeneity</h3>
+      <p>
+        Presents a systems‑level oncology framework integrating metabolic constraints, machine
+        learning, CRISPR‑guided immune engineering, and epigenetic modulation.
+        Available on <a class="inline" href="https://www.preprints.org/manuscript/202510.0570" target="_blank">Preprints.org</a>;
+        submitted to <em>Oncoscience</em>.
+      </p>
+    </div>
+    <div class="card">
+      <p><em>Additional publications and ongoing manuscripts will be added as they become publicly available.</em></p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Programming:</strong> Python, NumPy, SciPy, PyTorch, TensorFlow, C#, C++</li>
+        <li><strong>Scientific Computing:</strong> MCMC methods, ODE/PDE solvers, numerical integration</li>
+        <li><strong>Machine Learning:</strong> Ensemble models, federated learning, neoantigen pipelines</li>
+        <li><strong>Bioinformatics:</strong> TCGA/ICGC analysis, multi‑omic integration</li>
+        <li><strong>Modeling:</strong> Scalar‑field cosmology, tumor microenvironment dynamics</li>
+        <li><strong>Tools:</strong> LaTeX, Overleaf, Git, Jupyter, Matplotlib</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact & Profiles</h2>
+    <div class="card">
+      <p>Email: <a class="inline" href="mailto:johnnykitty06@gmail.com">johnnykitty06@gmail.com</a></p>
+      <p>ORCID: <a class="inline" href="https://orcid.org/0009-0008-8784-8480" target="_blank">0009‑0008‑8784‑8480</a></p>
+      <p>Google Scholar: <a class="inline" href="https://scholar.google.com/citations?user=C9wM1SkAAAAJ&hl=en" target="_blank">Profile</a></p>
+      <p>Sciprofiles: <a class="inline" href="https://sciprofiles.com/profile/4345346" target="_blank">Profile</a></p>
+      <p>Academia.edu: <a class="inline" href="https://independent.academia.edu/DewanSajidIslam" target="_blank">Profile</a></p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Dewan Sajid Islam · Hosted on GitHub Pages
+  </footer>
+
+  <script>
+    // Add dynamic shooting stars
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.className = 'shooting-star';
+      
+      // Random position
+      const startX = Math.random() * 30;
+      const startY = Math.random() * 30;
+      star.style.left = `${startX}%`;
+      star.style.top = `${startY}%`;
+      
+      // Random width and delay
+      const width = 50 + Math.random() * 100;
+      star.style.width = `${width}px`;
+      star.style.animationDelay = `${Math.random() * 15}s`;
+      
+      document.querySelector('.starfield').appendChild(star);
+      
+      // Remove after animation
+      setTimeout(() => {
+        star.remove();
+      }, 3000);
+    }
+    
+    // Create shooting stars periodically
+    setInterval(createShootingStar, 3000);
+    
+    // Create initial batch
+    for(let i = 0; i < 3; i++) {
+      setTimeout(() => createShootingStar(), i * 1000);
+    }
+  </script>
+</body>
 </html>
