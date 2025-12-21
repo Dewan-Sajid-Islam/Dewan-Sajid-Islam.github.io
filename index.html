@@ -13,179 +13,205 @@
   <style>
     :root {
       --bg: #05060d;
-      --fg: #e6e6f0;
-      --muted: #a0a0c0;
+      --fg: #ffffff;
+      --muted: #b8c7ff;
       --accent: #7aa2ff;
-      --card: rgba(255,255,255,0.05);
-      --star-color: rgba(255, 255, 255, 0.9);
-      --star-color-dim: rgba(200, 220, 255, 0.7);
-      --nebula-blue: rgba(120, 160, 255, 0.15);
-      --nebula-purple: rgba(180, 120, 255, 0.12);
+      --accent-glow: #a0c1ff;
+      --card: rgba(0, 5, 20, 0.7);
+      --star-color: #ffffff;
+      --nebula-pink: rgba(255, 100, 255, 0.25);
+      --nebula-blue: rgba(100, 150, 255, 0.35);
+      --nebula-purple: rgba(180, 120, 255, 0.3);
+      --nebula-green: rgba(100, 255, 200, 0.2);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: 
-        radial-gradient(ellipse at top, #020212 0%, #03031a 25%, #050620 50%, #080830 100%),
-        linear-gradient(to bottom, #000010 0%, #020218 100%);
+        radial-gradient(ellipse at top, #000010 0%, #020225 30%, #05063f 60%, #0a0a5f 100%),
+        linear-gradient(45deg, #000022 0%, #000033 50%, #000044 100%);
       color: var(--fg);
-      line-height: 1.75;
+      line-height: 1.8;
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
+      letter-spacing: 0.3px;
     }
 
-    /* Starfield Container */
-    .starfield {
+    /* ===== EPIC STARFIELD ===== */
+    #starfield {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+      z-index: -3;
     }
 
-    /* Multiple star layers for depth */
-    .stars {
+    .star {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        radial-gradient(1px 1px at 5% 10%, var(--star-color), transparent),
-        radial-gradient(1px 1px at 15% 70%, var(--star-color), transparent),
-        radial-gradient(1.5px 1.5px at 25% 30%, var(--star-color-dim), transparent),
-        radial-gradient(1px 1px at 35% 50%, var(--star-color), transparent),
-        radial-gradient(2px 2px at 45% 20%, var(--star-color-dim), transparent),
-        radial-gradient(1px 1px at 55% 80%, var(--star-color), transparent),
-        radial-gradient(1.5px 1.5px at 65% 40%, var(--star-color-dim), transparent),
-        radial-gradient(1px 1px at 75% 60%, var(--star-color), transparent),
-        radial-gradient(2px 2px at 85% 25%, var(--star-color-dim), transparent),
-        radial-gradient(1px 1px at 95% 75%, var(--star-color), transparent),
-        radial-gradient(1.5px 1.5px at 10% 45%, var(--star-color-dim), transparent),
-        radial-gradient(1px 1px at 30% 85%, var(--star-color), transparent),
-        radial-gradient(2px 2px at 50% 15%, var(--star-color-dim), transparent),
-        radial-gradient(1px 1px at 70% 65%, var(--star-color), transparent),
-        radial-gradient(1.5px 1.5px at 90% 35%, var(--star-color-dim), transparent);
-      opacity: 0.6;
+      background-color: white;
+      border-radius: 50%;
+      animation: twinkle 4s infinite ease-in-out;
     }
 
-    .stars2 {
-      background-image: 
-        radial-gradient(0.8px 0.8px at 8% 18%, var(--star-color), transparent),
-        radial-gradient(0.8px 0.8px at 22% 72%, var(--star-color), transparent),
-        radial-gradient(1px 1px at 41% 35%, var(--star-color-dim), transparent),
-        radial-gradient(0.8px 0.8px at 63% 58%, var(--star-color), transparent),
-        radial-gradient(1.2px 1.2px at 79% 22%, var(--star-color-dim), transparent),
-        radial-gradient(0.8px 0.8px at 91% 77%, var(--star-color), transparent),
-        radial-gradient(1px 1px at 18% 48%, var(--star-color-dim), transparent),
-        radial-gradient(0.8px 0.8px at 38% 88%, var(--star-color), transparent),
-        radial-gradient(1.2px 1.2px at 58% 12%, var(--star-color-dim), transparent),
-        radial-gradient(0.8px 0.8px at 78% 68%, var(--star-color), transparent),
-        radial-gradient(1px 1px at 98% 38%, var(--star-color-dim), transparent);
-      opacity: 0.4;
-    }
-
-    .stars3 {
-      background-image: 
-        radial-gradient(3px 3px at 20% 60%, var(--star-color-dim), transparent),
-        radial-gradient(2.5px 2.5px at 40% 30%, var(--star-color-dim), transparent),
-        radial-gradient(3.5px 3.5px at 60% 70%, var(--star-color-dim), transparent),
-        radial-gradient(2px 2px at 80% 40%, var(--star-color-dim), transparent);
-      opacity: 0.3;
-    }
-
-    /* Animations for different layers */
-    @keyframes driftSlow {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(300px, 150px); }
-    }
-
-    @keyframes driftMedium {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(200px, 100px); }
-    }
-
-    @keyframes driftFast {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(100px, 50px); }
-    }
-
-    .stars { animation: driftSlow 300s linear infinite alternate; }
-    .stars2 { animation: driftMedium 200s linear infinite alternate; }
-    .stars3 { animation: driftFast 150s linear infinite alternate; }
-
-    /* Milky Way Galaxy */
-    .milkyway {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(ellipse at 30% 50%, 
-          rgba(180, 200, 255, 0.25) 0%,
-          rgba(140, 170, 255, 0.15) 20%,
-          rgba(100, 140, 255, 0.08) 40%,
-          transparent 70%),
-        linear-gradient(60deg,
-          transparent 0%,
-          rgba(190, 210, 255, 0.1) 25%,
-          rgba(230, 240, 255, 0.15) 40%,
-          rgba(190, 210, 255, 0.1) 55%,
-          transparent 75%);
-      transform: rotate(-15deg) scale(1.5);
-      opacity: 0.6;
-      filter: blur(40px);
-      pointer-events: none;
-      animation: milkywayPulse 60s ease-in-out infinite alternate;
-    }
-
-    @keyframes milkywayPulse {
-      0% { opacity: 0.5; transform: rotate(-15deg) scale(1.5) translateX(0); }
-      100% { opacity: 0.7; transform: rotate(-15deg) scale(1.5) translateX(30px); }
-    }
-
-    /* Nebula/Gas Clouds */
-    .nebula {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 70% 30%, var(--nebula-blue) 0%, transparent 50%),
-        radial-gradient(circle at 20% 70%, var(--nebula-purple) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(100, 200, 255, 0.1) 0%, transparent 40%);
-      opacity: 0.5;
-      filter: blur(60px);
-      pointer-events: none;
-      animation: nebulaFloat 120s ease-in-out infinite alternate;
-    }
-
-    @keyframes nebulaFloat {
-      0% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(50px, 30px) scale(1.05); }
-      66% { transform: translate(-30px, 20px) scale(0.98); }
-      100% { transform: translate(20px, -20px) scale(1.02); }
-    }
-
-    /* Shooting stars */
-    .shooting-star {
-      position: absolute;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8));
+    .star.small {
+      width: 1px;
       height: 1px;
-      filter: blur(1px);
-      animation: shootingStar 3s linear infinite;
+      box-shadow: 0 0 3px white;
+    }
+
+    .star.medium {
+      width: 2px;
+      height: 2px;
+      box-shadow: 0 0 6px white, 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .star.large {
+      width: 3px;
+      height: 3px;
+      box-shadow: 0 0 10px white, 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* ===== MILKY WAY BAND - VERY VISIBLE ===== */
+    .milkyway {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: 
+        /* Milky Way core */
+        radial-gradient(ellipse at 40% 50%, 
+          rgba(255, 255, 255, 0.4) 0%,
+          rgba(200, 220, 255, 0.35) 10%,
+          rgba(150, 180, 255, 0.3) 25%,
+          rgba(100, 140, 255, 0.2) 40%,
+          rgba(50, 100, 200, 0.1) 60%,
+          transparent 80%),
+        /* Milky Way arms */
+        linear-gradient(115deg,
+          transparent 10%,
+          rgba(180, 200, 255, 0.3) 25%,
+          rgba(220, 230, 255, 0.5) 40%,
+          rgba(180, 200, 255, 0.3) 55%,
+          transparent 70%),
+        linear-gradient(-65deg,
+          transparent 15%,
+          rgba(160, 180, 255, 0.25) 30%,
+          rgba(200, 220, 255, 0.4) 45%,
+          rgba(160, 180, 255, 0.25) 60%,
+          transparent 75%);
+      transform: rotate(-15deg) translate(-25%, -25%);
+      filter: blur(30px);
+      opacity: 0.7;
+      z-index: -2;
+      pointer-events: none;
+      animation: milkywayDrift 120s linear infinite;
+    }
+
+    @keyframes milkywayDrift {
+      0% { transform: rotate(-15deg) translate(-25%, -25%); }
+      50% { transform: rotate(-17deg) translate(-20%, -30%); }
+      100% { transform: rotate(-15deg) translate(-25%, -25%); }
+    }
+
+    /* ===== COLORFUL GAS CLOUDS ===== */
+    .gas-cloud {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    .cloud1 {
+      background: radial-gradient(circle, var(--nebula-pink) 0%, transparent 70%);
+      width: 400px;
+      height: 400px;
+      top: 20%;
+      left: 10%;
+      animation: floatCloud1 80s ease-in-out infinite;
+    }
+
+    .cloud2 {
+      background: radial-gradient(circle, var(--nebula-blue) 0%, transparent 70%);
+      width: 500px;
+      height: 500px;
+      top: 60%;
+      right: 10%;
+      animation: floatCloud2 100s ease-in-out infinite;
+    }
+
+    .cloud3 {
+      background: radial-gradient(circle, var(--nebula-purple) 0%, transparent 70%);
+      width: 350px;
+      height: 350px;
+      bottom: 20%;
+      left: 20%;
+      animation: floatCloud3 70s ease-in-out infinite;
+    }
+
+    .cloud4 {
+      background: radial-gradient(circle, var(--nebula-green) 0%, transparent 70%);
+      width: 300px;
+      height: 300px;
+      top: 30%;
+      right: 30%;
+      animation: floatCloud4 90s ease-in-out infinite;
+    }
+
+    @keyframes floatCloud1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(100px, 50px) scale(1.1); }
+      66% { transform: translate(-50px, 80px) scale(0.9); }
+    }
+
+    @keyframes floatCloud2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(-80px, 30px) scale(1.05); }
+      50% { transform: translate(60px, -40px) scale(0.95); }
+      75% { transform: translate(-40px, 60px) scale(1.08); }
+    }
+
+    @keyframes floatCloud3 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      20% { transform: translate(120px, -20px) scale(1.1); }
+      40% { transform: translate(-60px, 90px) scale(0.92); }
+      60% { transform: translate(80px, 40px) scale(1.05); }
+      80% { transform: translate(-100px, -30px) scale(0.98); }
+    }
+
+    @keyframes floatCloud4 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(-60px, 70px) scale(1.07); }
+      50% { transform: translate(90px, -50px) scale(0.93); }
+      75% { transform: translate(-70px, -30px) scale(1.03); }
+    }
+
+    /* ===== SHOOTING STARS ===== */
+    .shooting-star {
+      position: fixed;
+      width: 2px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, white);
+      border-radius: 50%;
+      box-shadow: 0 0 10px white, 0 0 20px var(--accent), 0 0 30px var(--accent);
+      pointer-events: none;
+      z-index: -1;
       opacity: 0;
     }
 
-    @keyframes shootingStar {
+    @keyframes shootStar {
       0% {
         opacity: 0;
         transform: translateX(0) translateY(0);
@@ -198,134 +224,335 @@
       }
       100% {
         opacity: 0;
-        transform: translateX(300px) translateY(150px);
+        transform: translateX(100vw) translateY(100vh);
       }
     }
 
-    /* Content styling */
+    /* ===== EPIC TEXT EFFECTS ===== */
     header, section, footer {
       position: relative;
-      z-index: 2;
+      z-index: 10;
     }
 
-    /* Enhanced text glow for cosmic feel */
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background: radial-gradient(circle at center, rgba(0, 20, 80, 0.3) 0%, transparent 70%);
+    }
+
     header h1 {
-      font-size: clamp(2.4rem, 5vw, 3.6rem);
-      font-weight: 700;
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 0%, #b0c4ff 50%, #7aa2ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       text-shadow: 
-        0 0 20px rgba(122, 162, 255, 0.3),
-        0 0 40px rgba(122, 162, 255, 0.1);
-      letter-spacing: 0.5px;
+        0 0 30px rgba(122, 162, 255, 0.5),
+        0 0 60px rgba(122, 162, 255, 0.3),
+        0 0 90px rgba(122, 162, 255, 0.1);
+      animation: titleGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      0% {
+        text-shadow: 
+          0 0 30px rgba(122, 162, 255, 0.5),
+          0 0 60px rgba(122, 162, 255, 0.3),
+          0 0 90px rgba(122, 162, 255, 0.1);
+      }
+      100% {
+        text-shadow: 
+          0 0 40px rgba(122, 162, 255, 0.7),
+          0 0 80px rgba(122, 162, 255, 0.5),
+          0 0 120px rgba(122, 162, 255, 0.3);
+      }
     }
 
     header p {
-      max-width: 780px;
-      margin-top: 1.2rem;
+      max-width: 800px;
+      margin-top: 1.5rem;
       color: var(--muted);
-      font-size: 1.1rem;
-      text-shadow: 0 0 10px rgba(122, 162, 255, 0.2);
+      font-size: 1.2rem;
+      line-height: 1.9;
+      text-shadow: 0 0 20px rgba(122, 162, 255, 0.4);
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(122, 162, 255, 0.2);
     }
 
     nav {
-      margin-top: 2.5rem;
+      margin-top: 3rem;
       display: flex;
-      gap: 1.6rem;
+      gap: 1.2rem;
       flex-wrap: wrap;
       justify-content: center;
     }
 
     nav a {
-      color: var(--accent);
+      color: var(--accent-glow);
       text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem 1.2rem;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-      background: rgba(122, 162, 255, 0.1);
-      border: 1px solid rgba(122, 162, 255, 0.2);
+      font-weight: 600;
+      padding: 0.8rem 1.8rem;
+      border-radius: 12px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: rgba(10, 20, 50, 0.6);
+      border: 1px solid rgba(122, 162, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      text-shadow: 0 0 10px rgba(122, 162, 255, 0.5);
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(122, 162, 255, 0.3), transparent);
+      transition: left 0.7s;
     }
 
     nav a:hover {
-      background: rgba(122, 162, 255, 0.2);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(122, 162, 255, 0.2);
+      background: rgba(122, 162, 255, 0.15);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 
+        0 10px 25px rgba(122, 162, 255, 0.3),
+        0 0 30px rgba(122, 162, 255, 0.2),
+        inset 0 0 20px rgba(122, 162, 255, 0.1);
     }
 
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    /* ===== SECTIONS WITH COSMIC EFFECTS ===== */
     section {
-      max-width: 1050px;
-      margin: auto;
-      padding: 5rem 1.5rem;
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 3rem 2rem;
+      background: rgba(0, 5, 20, 0.6);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(122, 162, 255, 0.2);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        0 0 50px rgba(122, 162, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(122, 162, 255, 0.05) 0%, transparent 100%);
+      pointer-events: none;
     }
 
     section h2 {
-      font-size: 2.1rem;
-      margin-bottom: 1.8rem;
-      color: #b0c4ff;
-      text-shadow: 0 0 15px rgba(176, 196, 255, 0.3);
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #a0c4ff;
+      text-shadow: 
+        0 0 20px rgba(160, 196, 255, 0.5),
+        0 0 40px rgba(122, 162, 255, 0.3);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      border-radius: 2px;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 14px;
-      padding: 1.8rem;
-      margin-bottom: 1.6rem;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(122, 162, 255, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(5, 10, 30, 0.7);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(122, 162, 255, 0.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(122, 162, 255, 0.1), transparent);
+      transition: left 0.7s;
     }
 
     .card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-8px);
       box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.3),
-        0 0 20px rgba(122, 162, 255, 0.1);
+        0 15px 35px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(122, 162, 255, 0.2),
+        inset 0 0 30px rgba(122, 162, 255, 0.05);
     }
 
-    .card h3 { 
-      margin-bottom: 0.8rem; 
-      color: #a0c0ff; 
+    .card:hover::before {
+      left: 100%;
     }
 
-    ul { margin-left: 1.3rem; }
+    .card h3 {
+      margin-bottom: 1rem;
+      color: #8cb4ff;
+      font-size: 1.5rem;
+      text-shadow: 0 0 15px rgba(140, 180, 255, 0.5);
+    }
+
+    ul {
+      margin-left: 1.5rem;
+      padding-left: 0.5rem;
+    }
+
+    li {
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent);
+    }
 
     footer {
       text-align: center;
-      padding: 2.2rem;
+      padding: 3rem;
       color: var(--muted);
-      font-size: 0.9rem;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(5px);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 1rem;
+      background: rgba(0, 10, 30, 0.8);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(122, 162, 255, 0.2);
+      margin-top: 4rem;
+      text-shadow: 0 0 10px rgba(122, 162, 255, 0.3);
     }
 
-    a.inline { 
-      color: #8cb4ff; 
+    a.inline {
+      color: #a0c8ff;
       text-decoration: none;
-      text-shadow: 0 0 8px rgba(140, 180, 255, 0.3);
-      transition: color 0.3s ease;
+      text-shadow: 0 0 15px rgba(160, 200, 255, 0.5);
+      position: relative;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      padding: 0 2px;
+    }
+
+    a.inline::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transition: width 0.4s ease;
     }
 
     a.inline:hover {
-      color: #a8c8ff;
-      text-decoration: underline;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(160, 200, 255, 0.8);
     }
 
-    @media (max-width: 600px) {
-      section { padding: 3.2rem 1.2rem; }
-      nav { gap: 1rem; }
-      nav a { padding: 0.4rem 1rem; }
+    a.inline:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      header p {
+        font-size: 1.1rem;
+        padding: 1rem;
+      }
+      
+      nav {
+        gap: 0.8rem;
+      }
+      
+      nav a {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.9rem;
+      }
+      
+      section {
+        padding: 2rem 1rem;
+        margin: 2rem 1rem;
+      }
+      
+      section h2 {
+        font-size: 2rem;
+      }
+      
+      .cloud1, .cloud2, .cloud3, .cloud4 {
+        width: 200px;
+        height: 200px;
+        filter: blur(40px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      nav a {
+        width: 80%;
+        text-align: center;
+      }
+      
+      .milkyway {
+        opacity: 0.5;
+      }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Celestial Background -->
-  <div class="starfield">
-    <div class="milkyway"></div>
-    <div class="nebula"></div>
-    <div class="stars"></div>
-    <div class="stars stars2"></div>
-    <div class="stars stars3"></div>
-  </div>
+  <!-- EPIC STARFIELD -->
+  <div id="starfield"></div>
+  
+  <!-- CLEAR MILKY WAY BAND -->
+  <div class="milkyway"></div>
+  
+  <!-- COLORFUL GAS CLOUDS -->
+  <div class="gas-cloud cloud1"></div>
+  <div class="gas-cloud cloud2"></div>
+  <div class="gas-cloud cloud3"></div>
+  <div class="gas-cloud cloud4"></div>
 
   <header>
     <h1>Dewan Sajid Islam</h1>
@@ -352,7 +579,7 @@
         theoretical physics, cosmology, and computational oncology. My work emphasizes mathematical
         consistency, physical interpretability, and cross‑disciplinary methods.
       </p>
-      <p style="margin-top:1rem;">
+      <p style="margin-top:1.5rem;">
         Alongside formal science education, I pursue independent research projects spanning
         scalar‑field cosmology, high‑performance numerical simulation, and systems‑level modeling
         of cancer biology. I am committed to open science and accessible dissemination of research.
@@ -429,37 +656,99 @@
   </footer>
 
   <script>
-    // Add dynamic shooting stars
+    // Create visible stars
+    const starfield = document.getElementById('starfield');
+    const starCount = 300;
+    
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      const size = Math.random() * 3 + 1;
+      
+      if (size < 1.5) star.className = 'star small';
+      else if (size < 2.5) star.className = 'star medium';
+      else star.className = 'star large';
+      
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 4}s`;
+      star.style.opacity = Math.random() * 0.7 + 0.3;
+      
+      starfield.appendChild(star);
+    }
+
+    // Enhanced shooting stars that work properly
     function createShootingStar() {
       const star = document.createElement('div');
       star.className = 'shooting-star';
       
-      // Random position
-      const startX = Math.random() * 30;
-      const startY = Math.random() * 30;
+      const startX = Math.random() * 50;
+      const startY = Math.random() * 50;
+      const angle = Math.random() * 30 + 15;
+      const duration = Math.random() * 2 + 1.5;
+      
       star.style.left = `${startX}%`;
       star.style.top = `${startY}%`;
+      star.style.transform = `rotate(${angle}deg)`;
+      star.style.animation = `shootStar ${duration}s linear`;
+      star.style.animationDelay = `${Math.random() * 2}s`;
       
-      // Random width and delay
-      const width = 50 + Math.random() * 100;
-      star.style.width = `${width}px`;
-      star.style.animationDelay = `${Math.random() * 15}s`;
+      document.body.appendChild(star);
       
-      document.querySelector('.starfield').appendChild(star);
-      
-      // Remove after animation
       setTimeout(() => {
         star.remove();
-      }, 3000);
+      }, duration * 1000);
     }
     
-    // Create shooting stars periodically
-    setInterval(createShootingStar, 3000);
+    // Create shooting stars regularly
+    setInterval(() => {
+      if (Math.random() > 0.7) createShootingStar();
+    }, 2000);
     
-    // Create initial batch
-    for(let i = 0; i < 3; i++) {
-      setTimeout(() => createShootingStar(), i * 1000);
-    }
+    // Initial shooting stars
+    setTimeout(() => createShootingStar(), 1000);
+    setTimeout(() => createShootingStar(), 3000);
+    setTimeout(() => createShootingStar(), 5000);
+
+    // Add parallax effect on scroll
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const stars = document.querySelectorAll('.star');
+      const clouds = document.querySelectorAll('.gas-cloud');
+      
+      stars.forEach(star => {
+        const speed = star.classList.contains('large') ? 0.2 : 
+                      star.classList.contains('medium') ? 0.4 : 0.6;
+        const yPos = -(scrolled * speed);
+        star.style.transform = `translateY(${yPos}px)`;
+      });
+      
+      clouds.forEach(cloud => {
+        const speed = 0.1;
+        const yPos = -(scrolled * speed);
+        cloud.style.transform += ` translateY(${yPos}px)`;
+      });
+    });
+
+    // Add floating effect to cards on hover
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateY = (x - centerX) / 25;
+        const rotateX = (centerY - y) / 25;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+      });
+    });
   </script>
 </body>
 </html>
